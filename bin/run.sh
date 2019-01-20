@@ -49,6 +49,8 @@ echo "    max_history_messages = 50;" >> /etc/prosody/conf.d/domain.cfg.lua
 echo "    max_archive_query_results = 50;" >> /etc/prosody/conf.d/domain.cfg.lua
 echo "    muc_log_by_default = true;" >> /etc/prosody/conf.d/domain.cfg.lua
 echo "    muc_log_all_rooms = true;" >> /etc/prosody/conf.d/domain.cfg.lua
+echo Component \"conference.${PROSODY_XMPP_DOMAIN}\" \"muc\" >> /etc/prosody/conf.d/domain.cfg.lua
+echo Component \"upload.${PROSODY_XMPP_DOMAIN}\" \"http_upload\" >> /etc/prosody/conf.d/domain.cfg.lua
 echo Component \"proxy.${PROSODY_XMPP_DOMAIN}\" \"proxy65\" >> /etc/prosody/conf.d/domain.cfg.lua
 
 chown prosody:prosody /etc/prosody/conf.d/domain.cfg.lua

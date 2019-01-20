@@ -16,7 +16,8 @@ ldap = {
     user = {
       basedn        = '{{LDAP_USER_BASE}}',                      -- The base DN where user records can be found
       filter        = '(&(objectClass=person)(!(uid=seven)))', -- Filter expression to find user records under basedn
-      usernamefield = 'uid',                                         -- The field that contains the user's ID (this will be the username portion of the JID)
+--      usernamefield = 'uid',                                         -- The field that contains the user's ID (this will be the username portion of the JID)
+      usernamefield = 'sAMAccountName',                                         -- The field that contains the user's ID (this will be the username portion of the JID)
       namefield     = 'cn',                                          -- The field that contains the user's full name (this will be the alias found in the roster)
     },
 

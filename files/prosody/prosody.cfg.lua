@@ -62,11 +62,13 @@ modules_enabled = {
 		"ping"; -- Replies to XMPP pings with pongs
 		"pep"; -- Enables users to publish their mood, activity, playing music and more
 		"register"; -- Allow users to register on this server using a client and change passwords
+		"csi";
 
 	-- Admin interfaces
 		"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 		--"admin_telnet"; -- Opens telnet console interface on localhost port 5582
-	
+		--"admin_web";	
+
 	-- HTTP modules
 		"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
 		--"http_files"; -- Serve static files from a directory over HTTP
@@ -99,6 +101,7 @@ modules_disabled = {
 	-- "s2s"; -- Handle server-to-server connections
 };
 
+
 -- Disable account creation by default, for security
 -- For more information see http://prosody.im/doc/creating_accounts
 allow_registration = false;
@@ -117,7 +120,8 @@ pidfile = "/var/run/prosody/prosody.pid";
 -- These are the SSL/TLS-related settings. If you don't want
 -- to use SSL/TLS, you may comment or remove this
 ssl = {
-	key = "/etc/letsencrypt/key.pem";
+--       key = "/etc/letsencrypt/key.pem";
+	key = "/etc/letsencrypt/privkey.pem";
 	certificate = "/etc/letsencrypt/fullchain.pem";
 	protocol = "tlsv1_1+";
 }
@@ -160,7 +164,8 @@ Include '/etc/prosody/prosody-ldap.cfg.lua'
 -- through modules. An "sql" backend is included by default, but requires
 -- additional dependencies. See http://prosody.im/doc/storage for more info.
 
-default_storage = "sql" -- Default is "internal" (Debian: "sql" requires one of the
+storage = "internal"
+--default_storage = "sql" -- Default is "internal" (Debian: "sql" requires one of the
 -- lua-dbi-sqlite3, lua-dbi-mysql or lua-dbi-postgresql packages to work)
 
 -- For the "sql" backend, you can uncomment *one* of the below to configure:
