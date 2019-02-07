@@ -17,6 +17,8 @@ CHECK_VAR PROSODY_LDAP_HOST
 CHECK_VAR PROSODY_LDAP_GROUP
 CHECK_VAR PROSODY_LDAP_USER_BASE
 CHECK_VAR PROSODY_LDAP_GROUP_BASE
+CHECK_VAR PROSODY_LDAP_USER_FIELD
+CHECK_VAR PROSODY_UPLOAD_SECRET
 
 MSG "Configuring Prosody..."
 
@@ -26,6 +28,8 @@ sed -i -e "s/{{ADMINS}}/${PROSODY_ADMINS}/" \
 	-e "s/{{DB_NAME}}/${PROSODY_DB_NAME}/" \
 	-e "s/{{DB_USER}}/${PROSODY_DB_USER}/" \
 	-e "s/{{DB_PASS}}/${PROSODY_DB_PASS}/" \
+	-e "s/{{XMPP_DOMAIN}}/${PROSODY_XMPP_DOMAIN}/" \
+	-e "s/{{UPLOAD_SECRET}}/${PROSODY_UPLOAD_SECRET}/" \
 	/etc/prosody/prosody.cfg.lua
 
 sed -i -e "s/{{LDAP_HOST}}/${PROSODY_LDAP_HOST}/" \
@@ -33,6 +37,7 @@ sed -i -e "s/{{LDAP_HOST}}/${PROSODY_LDAP_HOST}/" \
 	-e "s/{{LDAP_PASS}}/${PROSODY_LDAP_PASS}/" \
 	-e "s/{{LDAP_GROUP}}/${PROSODY_LDAP_GROUP}/" \
 	-e "s/{{LDAP_USER_BASE}}/${PROSODY_LDAP_USER_BASE}/" \
+	-e "s/{{LDAP_USER_FIELD}}/${PROSODY_LDAP_USER_FIELD}/" \
 	-e "s/{{LDAP_GROUP_BASE}}/${PROSODY_LDAP_GROUP_BASE}/" \
 	/etc/prosody/prosody-ldap.cfg.lua
   
@@ -50,7 +55,7 @@ echo "    max_archive_query_results = 50;" >> /etc/prosody/conf.d/domain.cfg.lua
 echo "    muc_log_by_default = true;" >> /etc/prosody/conf.d/domain.cfg.lua
 echo "    muc_log_all_rooms = true;" >> /etc/prosody/conf.d/domain.cfg.lua
 echo Component \"conference.${PROSODY_XMPP_DOMAIN}\" \"muc\" >> /etc/prosody/conf.d/domain.cfg.lua
-echo Component \"upload.${PROSODY_XMPP_DOMAIN}\" \"http_upload\" >> /etc/prosody/conf.d/domain.cfg.lua
+#echo Component \"upload.${PROSODY_XMPP_DOMAIN}\" \"http_upload\" >> /etc/prosody/conf.d/domain.cfg.lua
 echo Component \"proxy.${PROSODY_XMPP_DOMAIN}\" \"proxy65\" >> /etc/prosody/conf.d/domain.cfg.lua
 
 chown prosody:prosody /etc/prosody/conf.d/domain.cfg.lua

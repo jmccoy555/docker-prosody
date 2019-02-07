@@ -72,6 +72,7 @@ modules_enabled = {
 	-- HTTP modules
 		"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
 		--"http_files"; -- Serve static files from a directory over HTTP
+		"http_upload_external";
 
 	-- Other specific functionality
 		"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
@@ -91,6 +92,8 @@ modules_enabled = {
 		"roster_allinall";
 		"strict_https";
 		"blocklist";
+		--"http";
+		--"conversejs";
 };
 
 -- These modules are auto-loaded, but should you want
@@ -222,5 +225,10 @@ log = "*console"
 -- For organizational purposes you may prefer to add VirtualHost and
 -- Component definitions in their own config files. This line includes
 -- all config files in /etc/prosody/conf.d/
+
+http_upload_external_base_url = "https://upload.{{XMPP_DOMAIN}}/"
+http_upload_external_secret = "{{UPLOAD_SECRET}}"
+http_upload_external_file_size_limit = 104857600 -- 100 MiB
+
 
 Include "conf.d/*.cfg.lua"
