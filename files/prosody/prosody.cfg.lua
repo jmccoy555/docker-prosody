@@ -226,8 +226,9 @@ log = "*console"
 -- Component definitions in their own config files. This line includes
 -- all config files in /etc/prosody/conf.d/
 
-http_upload_external_base_url = "https://upload.{{XMPP_DOMAIN}}/"
+http_upload_external_base_url = "https://upload.{{XMPP_DOMAIN}}/share.php/"
 http_upload_external_secret = "{{UPLOAD_SECRET}}"
+http_upload_external_protocol = "v2";
 http_upload_external_file_size_limit = 104857600 -- 100 MiB
 
 
